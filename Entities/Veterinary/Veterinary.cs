@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ap_auth_server.Entities.Veterinary
+namespace ap_server.Entities.Veterinary
 {
     public class Veterinary
     {

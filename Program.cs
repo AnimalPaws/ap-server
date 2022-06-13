@@ -4,29 +4,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ap_auth_server.Helpers;
-using ap_auth_server.Services;
-using ap_auth_server.Authorization;
+using ap_server.Helpers;
+using ap_server.Services;
+using ap_server.Authorization;
 using AutoMapper;
-using ap_auth_server.Models.Users;
-using ap_auth_server.Models.Foundation;
-using ap_auth_server.Models.Veterinary;
-using ap_auth_server.Entities.User;
-using ap_auth_server.Entities.Foundation;
-using ap_auth_server.Entities.Veterinary;
+using ap_server.Models.Users;
+using ap_server.Models.Foundation;
+using ap_server.Models.Veterinary;
+using ap_server.Entities.User;
+using ap_server.Entities.Foundation;
+using ap_server.Entities.Veterinary;
 using System.Text.Json.Serialization;
+using ap_server.Models.Announcement;
+using ap_server.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
 var config = new MapperConfiguration(cfg => {
-    cfg.CreateMap<UserRegisterRequest, User>();
-    cfg.CreateMap<User, UserAuthenticateResponse>();
-    cfg.CreateMap<FoundationRegisterRequest, Foundation>();
-    cfg.CreateMap<Foundation, UserAuthenticateResponse>();
-    cfg.CreateMap<VeterinaryRegisterRequest, Veterinary>();
-    cfg.CreateMap<Veterinary, VeterinaryAuthenticateResponse>();
+    cfg.CreateMap<CreateRequest, Announcement>().ReverseMap();
+    cfg.CreateMap<UpdateRequest, Announcement>();
 });
 
 IMapper mapper = config.CreateMapper();
@@ -53,14 +51,8 @@ IMapper mapper = config.CreateMapper();
     services.AddHttpContextAccessor();
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-    // Utils
-    services.AddScoped<IJwtUtils, JwtUtils>();
-
     // Interfaces
-    services.AddScoped<IUserService, UserService>();
-    services.AddScoped<IFoundationService, FoundationService>();
-    services.AddScoped<IVeterinaryService, VeterinaryService>();
-    services.AddScoped<IEmailService, EmailService>();
+    services.AddScoped<IAnnouncementService, AnnouncementService>();
 
     // AutoMapper
     services.AddSingleton(mapper);
@@ -76,14 +68,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalPaws Auth Server"));
+    app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalPaws Api Server"));
 }
 
 // Global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
-
-// Custom JWT Middleware de autentificación
-app.UseMiddleware<JwtMiddleware>();
 
 app.UseCors(x => x
         .SetIsOriginAllowed(origin => true)

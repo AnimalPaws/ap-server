@@ -1,4 +1,4 @@
-﻿namespace ap_auth_server.Entities.User
+﻿namespace ap_server.Entities.User
 {
     public class UserProfile
     {

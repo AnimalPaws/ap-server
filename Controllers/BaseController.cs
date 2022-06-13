@@ -1,9 +1,9 @@
-﻿using ap_auth_server.Entities.Foundation;
-using ap_auth_server.Entities.User;
-using ap_auth_server.Entities.Veterinary;
+﻿using ap_server.Entities.Foundation;
+using ap_server.Entities.User;
+using ap_server.Entities.Veterinary;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ap_auth_server.Controllers
+namespace ap_server.Controllers
 {
     [Controller]
     public abstract class BaseController : ControllerBase

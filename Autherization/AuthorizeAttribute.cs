@@ -1,16 +1,16 @@
-﻿using ap_auth_server.Autherization;
-using ap_auth_server.Entities.User;
-using ap_auth_server.Entities.Foundation;
-using ap_auth_server.Entities.Veterinary;
-using ap_auth_server.Models;
+﻿using ap_server.Autherization;
+using ap_server.Entities.User;
+using ap_server.Entities.Foundation;
+using ap_server.Entities.Veterinary;
+using ap_server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Linq;
-using ap_auth_server.Entities;
+using ap_server.Entities;
 
-namespace ap_auth_server.Authorization
+namespace ap_server.Authorization
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ap_auth_server.Entities.Foundation
+namespace ap_server.Entities.Foundation
 {
     public class Foundation
     {

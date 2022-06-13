@@ -1,21 +1,20 @@
-﻿using ap_auth_server.Entities.User;
-using ap_auth_server.Models.Foundation;
+﻿using ap_server.Entities;
+using ap_server.Entities.User;
+using ap_server.Models.Announcement;
+using ap_server.Models.Foundation;
 using AutoMapper;
 
-namespace ap_auth_server.Helpers
+namespace ap_server.Helpers
 {
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {
-            // User -> AuthenticateResponse
-            this.CreateMap<User, FoundationAuthenticateResponse>().ReverseMap();
+            // CreateRequest -> Announcement
+            this.CreateMap<CreateRequest, Announcement>().ReverseMap();
 
-            // RegisterRequest -> User
-            this.CreateMap<FoundationRegisterRequest, User>().ReverseMap();
-
-            // UpdateRequest -> User
-            this.CreateMap<FoundationUpdateRequest, User>()
+            // UpdateRequest -> Announcement
+            this.CreateMap<UpdateRequest, Announcement>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace ap_auth_server.Entities.User
+namespace ap_server.Entities.User
 {
     public class User
     {

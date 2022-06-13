@@ -1,9 +1,10 @@
-﻿using ap_auth_server.Entities.Foundation;
-using ap_auth_server.Entities.User;
-using ap_auth_server.Entities.Veterinary;
+﻿using ap_server.Entities;
+using ap_server.Entities.Foundation;
+using ap_server.Entities.User;
+using ap_server.Entities.Veterinary;
 using Microsoft.EntityFrameworkCore;
 
-namespace ap_auth_server.Helpers
+namespace ap_server.Helpers
 {
     public class DataContext : DbContext
     {
@@ -19,8 +20,6 @@ namespace ap_auth_server.Helpers
             options.UseMySQL(Configuration.GetConnectionString("APDatabase"));
         }
 
-        public DbSet<User> User { get; set; }
-        public DbSet<Veterinary> Veterinary { get; set; }
-        public DbSet<Foundation> Foundation { get; set; }
+        public DbSet<Announcement> Announce { get; set; }
     }
 }

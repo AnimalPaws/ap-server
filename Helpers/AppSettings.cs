@@ -1,4 +1,4 @@
-﻿namespace ap_auth_server.Helpers
+﻿namespace ap_server.Helpers
 {
     public class AppSettings
     {

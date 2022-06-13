@@ -5,7 +5,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ap_auth_server.Helpers
+namespace ap_server.Helpers
 {
     public class ErrorHandlerMiddleware
     {

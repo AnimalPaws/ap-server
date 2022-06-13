@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace ap_auth_server.Helpers
+namespace ap_server.Helpers
 {
     // Custom exception class for throwing application specific exceptions (eg. for validation) 
     // that can be caught and handled within the application
