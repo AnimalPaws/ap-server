@@ -32,13 +32,6 @@ namespace ap_server.Entities.User
         public string? VerificationToken { get; set; }
         [NotMapped]
         public string? ResetToken { get; set; }
-        [NotMapped]
-        public List<RefreshToken> RefreshTokens { get; set; }
-
-        public bool OwnsToken(string token)
-        {
-            return this.RefreshTokens?.Find(x => x.Token == token) != null;
-        }
        
         //public DateTime? Updated_At { get; set; }
         //public int? Profile_Id { get; set; }

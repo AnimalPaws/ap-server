@@ -1,7 +1,6 @@
 ﻿using ap_server.Entities;
 using ap_server.Entities.User;
 using ap_server.Models.Announcement;
-using ap_server.Models.Foundation;
 using AutoMapper;
 
 namespace ap_server.Helpers
