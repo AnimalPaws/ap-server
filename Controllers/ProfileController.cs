@@ -36,7 +36,7 @@ namespace ap_server.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UpdateRequest model)
+        public IActionResult Update(int id, ProfileUpdateRequest model)
         {
             _profileService.Update(id, model);
             return Ok(new

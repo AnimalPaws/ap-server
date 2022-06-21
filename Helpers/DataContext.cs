@@ -21,6 +21,7 @@ namespace ap_server.Helpers
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<UserProfile> User_Profile { get; set; }
         public DbSet<Announcement> Announce { get; set; }
     }
 }

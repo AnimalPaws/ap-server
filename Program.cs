@@ -14,6 +14,7 @@ using ap_server.Entities.Veterinary;
 using System.Text.Json.Serialization;
 using ap_server.Models.Announcement;
 using ap_server.Entities;
+using ap_server.Models.Profile;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,9 @@ var config = new MapperConfiguration(cfg => {
 
 IMapper mapper = config.CreateMapper();
 
+
+// Add services to the container.
+{
     var services = builder.Services;
 
     services.AddEndpointsApiExplorer();
@@ -47,6 +51,7 @@ IMapper mapper = config.CreateMapper();
 
     // Interfaces
     services.AddScoped<IAnnouncementService, AnnouncementService>();
+    services.AddScoped<IProfileService, ProfileService>();
 
     // AutoMapper
     services.AddSingleton(mapper);
@@ -59,14 +64,10 @@ IMapper mapper = config.CreateMapper();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(x =>
-    {
-        x.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalPaws Auth Server");
-        x.RoutePrefix = string.Empty;
-    });
+    app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalPaws Api Server"));
 }
 
 // Global error handler
