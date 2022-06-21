@@ -16,7 +16,7 @@ namespace ap_server.Entities.User
         [JsonIgnore]
         public string? Password { get; set; }
         [NotMapped]
-        public Role Role { get; set; }
+        //public Role Role { get; set; }
         public string? Phone_Number { get; set; }
         public DateTime Birthdate { get; set; }
         public string? Department { get; set; }
@@ -26,15 +26,15 @@ namespace ap_server.Entities.User
         public bool? Is_Blocked { get; set; }
         public bool? Is_Restricted { get; set; }*/
         public DateTime? Created_At { get; set; }
-        [NotMapped]
-        public DateTime? Reset_Token_Expire { get; set; }
-        public DateTime? PasswordReset { get; set; }
-        public string? VerificationToken { get; set; }
-        [NotMapped]
-        public string? ResetToken { get; set; }
-       
+        //[NotMapped]
+        //public DateTime? Reset_Token_Expire { get; set; }
+        //public DateTime? PasswordReset { get; set; }
+        //public string? VerificationToken { get; set; }
+        //[NotMapped]
+        //public string? ResetToken { get; set; }
+
         //public DateTime? Updated_At { get; set; }
-        //public int? Profile_Id { get; set; }
+        public int? Profile_Id { get; set; }
 
         //public virtual UserProfile Profile { get; set; }
 
