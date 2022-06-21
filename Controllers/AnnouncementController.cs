@@ -44,6 +44,17 @@ namespace ap_server.Controllers
         }
 
         [HttpPut("{id}")]
+        public IActionResult UpdateById(int id, UpdateRequest model)
+        {
+            _announcementService.Update(id, model);
+            return Ok(new
+            {
+                message = "Announcement updated",
+                Status = 200
+            });
+        }
+
+        [HttpPut]
         public IActionResult Update(int id, UpdateRequest model)
         {
             _announcementService.Update(id, model);

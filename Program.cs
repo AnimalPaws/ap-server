@@ -26,9 +26,6 @@ var config = new MapperConfiguration(cfg => {
 
 IMapper mapper = config.CreateMapper();
 
-
-// Add services to the container.
-{
     var services = builder.Services;
 
     services.AddEndpointsApiExplorer();
@@ -62,10 +59,14 @@ IMapper mapper = config.CreateMapper();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalPaws Api Server"));
+    app.UseSwaggerUI(x =>
+    {
+        x.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalPaws Auth Server");
+        x.RoutePrefix = string.Empty;
+    });
 }
 
 // Global error handler
