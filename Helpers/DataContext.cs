@@ -20,8 +20,8 @@ namespace ap_server.Helpers
             options.UseMySQL(Configuration.GetConnectionString("APDatabase"));
         }
 
-        public DbSet<User> User { get; set; }
-        public DbSet<UserProfile> User_Profile { get; set; }
-        public DbSet<Announcement> Announce { get; set; }
+        public DbSet<User> user { get; set; }
+        public DbSet<UserProfile> user_profile { get; set; }
+        public DbSet<Announcement> announce { get; set; }
     }
 }

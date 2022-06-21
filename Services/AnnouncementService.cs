@@ -29,7 +29,7 @@ namespace ap_server.Services
 
         public IEnumerable<Announcement> GetAll()
         {
-            return _context.Announce;
+            return _context.announce;
         }
 
         public Announcement GetById(int id)
@@ -40,21 +40,21 @@ namespace ap_server.Services
         public void Create(CreateRequest model)
         {
             var announcement = _mapper.Map<Announcement>(model);
-            _context.Announce.Add(announcement);
+            _context.announce.Add(announcement);
             _context.SaveChanges();
         }
         public void Update(int id, UpdateRequest model)
         {
             var announcement = GetAnnouncement(id);
             _mapper.Map(model, announcement);
-            _context.Announce.Update(announcement);
+            _context.announce.Update(announcement);
             _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var announcement = GetAnnouncement(id);
-            _context.Announce.Remove(announcement);
+            _context.announce.Remove(announcement);
             _context.SaveChanges();
         }
 
@@ -62,7 +62,7 @@ namespace ap_server.Services
 
         private Announcement GetAnnouncement(int id)
         {
-            var announcement = _context.Announce.Find(id);
+            var announcement = _context.announce.Find(id);
             if (announcement == null) throw new KeyNotFoundException("Announcement not found");
             return announcement;
         }

@@ -28,7 +28,7 @@ namespace ap_server.Services
 
         public IEnumerable<User> GetAll()
         {
-            return _context.User;
+            return _context.user;
         }
 
         public User GetById(int id)
@@ -40,14 +40,14 @@ namespace ap_server.Services
         {
             var user = GetUser(id);
             _mapper.Map(model, user);
-            _context.User.Update(user);
+            _context.user.Update(user);
             _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var user = GetUser(id);
-            _context.User.Remove(user);
+            _context.user.Remove(user);
             _context.SaveChanges();
         }
 
@@ -55,7 +55,7 @@ namespace ap_server.Services
 
         private User GetUser(int id)
         {
-            var user = _context.User.Find(id);
+            var user = _context.user.Find(id);
             if (user == null) throw new KeyNotFoundException("Announcement not found");
             return user;
         }
