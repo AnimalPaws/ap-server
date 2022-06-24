@@ -40,6 +40,7 @@ namespace ap_server.Services
         public void Create(CreateRequest model)
         {
             var announcement = _mapper.Map<Announcement>(model);
+            announcement.Likes = 0;
             _context.announce.Add(announcement);
             _context.SaveChanges();
         }
