@@ -10,7 +10,8 @@ namespace ap_server.Services
         IEnumerable<Announcement> GetAll();
         Announcement GetById(int id);
         void Create(CreateRequest model);
-        void Update(int id, UpdateRequest model);
+        void UpdateById(int id, UpdateRequest model);
+        void Update(UpdateRequest model);
         void Delete(int id);
 
     }
@@ -29,7 +30,7 @@ namespace ap_server.Services
 
         public IEnumerable<Announcement> GetAll()
         {
-            return _context.announce;
+            return _context.Announce;
         }
 
         public Announcement GetById(int id)
@@ -41,21 +42,29 @@ namespace ap_server.Services
         {
             var announcement = _mapper.Map<Announcement>(model);
             announcement.Likes = 0;
-            _context.announce.Add(announcement);
+            _context.Announce.Add(announcement);
             _context.SaveChanges();
         }
-        public void Update(int id, UpdateRequest model)
+        public void UpdateById(int id, UpdateRequest model)
         {
             var announcement = GetAnnouncement(id);
             _mapper.Map(model, announcement);
-            _context.announce.Update(announcement);
+            _context.Announce.Update(announcement);
+            _context.SaveChanges();
+        }
+
+        public void Update(UpdateRequest model)
+        {
+            var announcement = GetAll();
+            _mapper.Map(model, announcement);
+            _context.Announce.Update((Announcement)announcement);
             _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var announcement = GetAnnouncement(id);
-            _context.announce.Remove(announcement);
+            _context.Announce.Remove(announcement);
             _context.SaveChanges();
         }
 
@@ -63,7 +72,7 @@ namespace ap_server.Services
 
         private Announcement GetAnnouncement(int id)
         {
-            var announcement = _context.announce.Find(id);
+            var announcement = _context.Announce.Find(id);
             if (announcement == null) throw new KeyNotFoundException("Announcement not found");
             return announcement;
         }

@@ -46,7 +46,7 @@ namespace ap_server.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateById(int id, UpdateRequest model)
         {
-            _announcementService.Update(id, model);
+            _announcementService.UpdateById(id, model);
             return Ok(new
             {
                 message = "Announcement updated",
@@ -55,9 +55,9 @@ namespace ap_server.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(int id, UpdateRequest model)
+        public IActionResult Update(UpdateRequest model)
         {
-            _announcementService.Update(id, model);
+            _announcementService.Update(model);
             return Ok(new
             {
                 message = "Announcement updated",
