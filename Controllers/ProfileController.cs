@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ap_server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProfileController : Controller
     {
         private IProfileService _profileService;

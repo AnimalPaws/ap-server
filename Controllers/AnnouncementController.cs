@@ -6,7 +6,7 @@ using ap_server.Services;
 namespace ap_server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AnnouncementController : Controller
     {
         private IAnnouncementService _announcementService;
