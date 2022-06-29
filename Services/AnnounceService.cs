@@ -9,18 +9,18 @@ namespace ap_server.Services
     {
         IEnumerable<Announcement> GetAll();
         Announcement GetById(int id);
-        void Create(CreateRequest model);
-        void UpdateById(int id, UpdateRequest model);
-        void Update(UpdateRequest model);
+        void Create(AnnounceCreateRequest model);
+        void UpdateById(int id, AnnounceUpdateRequest model);
+        void Update(AnnounceUpdateRequest model);
         void Delete(int id);
 
     }
-    public class AnnouncementService : IAnnouncementService
+    public class AnnounceService : IAnnouncementService
     {
         private DataContext _context;
         private readonly IMapper _mapper;
 
-        public AnnouncementService(
+        public AnnounceService(
             DataContext context, 
             IMapper mapper)
         {
@@ -38,14 +38,15 @@ namespace ap_server.Services
             return GetAnnouncement(id);
         }
 
-        public void Create(CreateRequest model)
+        public void Create(AnnounceCreateRequest model)
         {
             var announcement = _mapper.Map<Announcement>(model);
+            announcement.Created_At = DateTime.Now;
             announcement.Likes = 0;
             _context.Announce.Add(announcement);
             _context.SaveChanges();
         }
-        public void UpdateById(int id, UpdateRequest model)
+        public void UpdateById(int id, AnnounceUpdateRequest model)
         {
             var announcement = GetAnnouncement(id);
             _mapper.Map(model, announcement);
@@ -53,7 +54,7 @@ namespace ap_server.Services
             _context.SaveChanges();
         }
 
-        public void Update(UpdateRequest model)
+        public void Update(AnnounceUpdateRequest model)
         {
             var announcement = GetAll();
             _mapper.Map(model, announcement);

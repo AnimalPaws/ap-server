@@ -4,9 +4,9 @@ using ap_server.Models.Announcement;
 using ap_server.Services;
 using System.ComponentModel.DataAnnotations;
 
-namespace ap_server.Models.Announcement
+namespace ap_server.Models.Adoption
 {
-    public class UpdateRequest
+    public class AdoptionUpdateRequest
     {
         public string Title { get; set; }
         public string Description { get; set; }

@@ -11,10 +11,10 @@ namespace ap_server.Helpers
         public AutoMapperProfile()
         {
             // CreateRequest -> Announcement
-            this.CreateMap<CreateRequest, Announcement>().ReverseMap();
+            this.CreateMap<AnnounceCreateRequest, Announcement>().ReverseMap();
 
             // UpdateRequest -> Announcement
-            this.CreateMap<UpdateRequest, Announcement>()
+            this.CreateMap<AnnounceUpdateRequest, Announcement>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {

@@ -1,28 +1,21 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using ap_server.Helpers;
-using ap_server.Services;
-using ap_server.Authorization;
-using AutoMapper;
-using ap_server.Entities.User;
-using ap_server.Entities.Foundation;
-using ap_server.Entities.Veterinary;
-using System.Text.Json.Serialization;
-using ap_server.Models.Announcement;
 using ap_server.Entities;
-using ap_server.Models.Profile;
+using ap_server.Helpers;
+using ap_server.Models.Adoption;
+using ap_server.Models.Announcement;
+using ap_server.Services;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
 var config = new MapperConfiguration(cfg => {
-    cfg.CreateMap<CreateRequest, Announcement>().ReverseMap();
-    cfg.CreateMap<UpdateRequest, Announcement>();
+    cfg.CreateMap<AnnounceCreateRequest, Announcement>().ReverseMap();
+    cfg.CreateMap<AnnounceUpdateRequest, Announcement>();
+    cfg.CreateMap<AdoptionCreateRequest, Adoption>().ReverseMap();
+    cfg.CreateMap<AdoptionUpdateRequest, Adoption>();
 });
 
 IMapper mapper = config.CreateMapper();
@@ -50,8 +43,9 @@ IMapper mapper = config.CreateMapper();
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     // Interfaces
-    services.AddScoped<IAnnouncementService, AnnouncementService>();
+    services.AddScoped<IAnnouncementService, AnnounceService>();
     services.AddScoped<IProfileService, ProfileService>();
+    services.AddScoped<IAdoptionService, AdoptionService>();
 
     // AutoMapper
     services.AddSingleton(mapper);

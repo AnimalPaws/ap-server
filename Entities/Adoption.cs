@@ -1,6 +1,6 @@
 ﻿namespace ap_server.Entities
 {
-    public class Announcement
+    public class Adoption
     {
         public int Id { get; set; }
         public int Profile_Id { get; set; }

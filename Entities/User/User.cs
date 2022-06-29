@@ -15,12 +15,13 @@ namespace ap_server.Entities.User
         public string? Email { get; set; }
         [JsonIgnore]
         public string? Password { get; set; }
-        [NotMapped]
-        //public Role Role { get; set; }
         public string? Phone_Number { get; set; }
         public DateTime Birthdate { get; set; }
         public string? Department { get; set; }
         public string? City { get; set; }
+        public Role Role { get; set; }
+        public string? Picture { get; set; }
+        public string? Biography { get; set; }
         /*public bool? Phone_Number_Verified { get; set; }
         public bool? Email_Verified { get; set; }
         public bool? Is_Blocked { get; set; }

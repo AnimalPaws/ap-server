@@ -1,52 +1,53 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ap_server.Models.Announcement;
+using ap_server.Models.Adoption;
 using ap_server.Services;
 
 namespace ap_server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AnnouncementController : Controller
+    public class AdoptionController : Controller
     {
-        private IAnnouncementService _announcementService;
+        private IAdoptionService _adoptionService;
         private IMapper _mapper;
 
-        public AnnouncementController(
-            IAnnouncementService announcementService,
+        public AdoptionController(
+            IAdoptionService adoptionService,
             IMapper mapper)
         {
-            _announcementService = announcementService;
+            _adoptionService = adoptionService;
             _mapper = mapper;
         }
         [HttpGet]
         public IActionResult GetAll()
         {
-            var announcements = _announcementService.GetAll();
+            var announcements = _adoptionService.GetAll();
             return Ok(announcements);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var announcements = _announcementService.GetById(id);
+            var announcements = _adoptionService.GetById(id);
             return Ok(announcements);
         }
 
         [HttpPost]
-        public IActionResult Create(CreateRequest model)
+        public IActionResult Create(AdoptionCreateRequest model)
         {
-            _announcementService.Create(model);
-            return Ok(new { 
-                message = "Announcement created", 
+            _adoptionService.Create(model);
+            return Ok(new
+            {
+                message = "Announcement created",
                 Status = 200
             });
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateById(int id, UpdateRequest model)
+        public IActionResult UpdateById(int id, AdoptionUpdateRequest model)
         {
-            _announcementService.UpdateById(id, model);
+            _adoptionService.UpdateById(id, model);
             return Ok(new
             {
                 message = "Announcement updated",
@@ -55,9 +56,9 @@ namespace ap_server.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(UpdateRequest model)
+        public IActionResult Update(AdoptionUpdateRequest model)
         {
-            _announcementService.Update(model);
+            _adoptionService.Update(model);
             return Ok(new
             {
                 message = "Announcement updated",
@@ -68,7 +69,7 @@ namespace ap_server.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _announcementService.Delete(id);
+            _adoptionService.Delete(id);
             return Ok(new
             {
                 Message = "Announcement deleted",
