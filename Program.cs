@@ -3,6 +3,7 @@ using ap_server.Helpers;
 using ap_server.Models.Adoption;
 using ap_server.Models.Announcement;
 using ap_server.Models.Contract;
+using ap_server.Models.Donation;
 using ap_server.Services;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ var config = new MapperConfiguration(cfg => {
     cfg.CreateMap<AdoptionCreateRequest, Adoption>().ReverseMap();
     cfg.CreateMap<AdoptionUpdateRequest, Adoption>();
     cfg.CreateMap<ContractCreateRequest, Contract>().ReverseMap();
+    cfg.CreateMap<DonationCreateRequest, Donation>().ReverseMap();
+    cfg.CreateMap<DonationUpdateRequest, Donation>();
 });
 
 IMapper mapper = config.CreateMapper();
@@ -49,6 +52,7 @@ IMapper mapper = config.CreateMapper();
     services.AddScoped<IProfileService, ProfileService>();
     services.AddScoped<IAdoptionService, AdoptionService>();
     services.AddScoped<IContractService, ContractService>();
+    services.AddScoped<IDonationService, DonationService>();
 
     // AutoMapper
     services.AddSingleton(mapper);

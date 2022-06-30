@@ -25,6 +25,6 @@ namespace ap_server.Helpers
         public DbSet<Announcement> Announce { get; set; }
         public DbSet<Adoption> Adoption { get; set; }
         public DbSet<Contract> Contract { get; set; }
-        //public DbSet<Donation> Donation { get; set; }
+        public DbSet<Donation> Donation { get; set; }
     }
 }
