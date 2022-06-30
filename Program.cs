@@ -2,6 +2,7 @@ using ap_server.Entities;
 using ap_server.Helpers;
 using ap_server.Models.Adoption;
 using ap_server.Models.Announcement;
+using ap_server.Models.Contract;
 using ap_server.Services;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ var config = new MapperConfiguration(cfg => {
     cfg.CreateMap<AnnounceUpdateRequest, Announcement>();
     cfg.CreateMap<AdoptionCreateRequest, Adoption>().ReverseMap();
     cfg.CreateMap<AdoptionUpdateRequest, Adoption>();
+    cfg.CreateMap<ContractCreateRequest, Contract>().ReverseMap();
 });
 
 IMapper mapper = config.CreateMapper();
@@ -46,6 +48,7 @@ IMapper mapper = config.CreateMapper();
     services.AddScoped<IAnnouncementService, AnnounceService>();
     services.AddScoped<IProfileService, ProfileService>();
     services.AddScoped<IAdoptionService, AdoptionService>();
+    services.AddScoped<IContractService, ContractService>();
 
     // AutoMapper
     services.AddSingleton(mapper);
