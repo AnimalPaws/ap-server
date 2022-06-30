@@ -40,8 +40,9 @@ namespace ap_server.Services
 
         public void Create(AnnounceCreateRequest model)
         {
+            var custDateTime = DateNow();
             var announcement = _mapper.Map<Announcement>(model);
-            announcement.Created_At = DateTime.Now;
+            announcement.Created_At = custDateTime;
             announcement.Likes = 0;
             _context.Announce.Add(announcement);
             _context.SaveChanges();
@@ -71,6 +72,13 @@ namespace ap_server.Services
 
         // HELPER METHODS
 
+        public static DateTime DateNow()
+        {
+            DateTime utcTime = DateTime.UtcNow;
+            TimeZoneInfo myZone = TimeZoneInfo.CreateCustomTimeZone("COLOMBIA", new TimeSpan(-5, 0, 0), "Colombia", "Colombia");
+            DateTime custDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, myZone);
+            return custDateTime;
+        }
         private Announcement GetAnnouncement(int id)
         {
             var announcement = _context.Announce.Find(id);

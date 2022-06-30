@@ -41,7 +41,7 @@ namespace ap_server.Services
         public void Create(AdoptionCreateRequest model)
         {
             var adoption = _mapper.Map<Adoption>(model);
-            adoption.Created_At = DateTime.Now;
+            adoption.Created_At = DateNow();
             adoption.Likes = 0;
             _context.Adoption.Add(adoption);
             _context.SaveChanges();
@@ -76,6 +76,14 @@ namespace ap_server.Services
             var adoption = _context.Adoption.Find(id);
             if (adoption == null) throw new KeyNotFoundException("Adoption not found");
             return adoption;
+        }
+
+        public static DateTime DateNow()
+        {
+            DateTime utcTime = DateTime.UtcNow;
+            TimeZoneInfo myZone = TimeZoneInfo.CreateCustomTimeZone("COLOMBIA", new TimeSpan(-5, 0, 0), "Colombia", "Colombia");
+            DateTime custDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, myZone);
+            return custDateTime;
         }
     }
 }
